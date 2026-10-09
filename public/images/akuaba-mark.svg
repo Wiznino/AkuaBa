@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">AkuaBa STEM Girls mark</title>
+  <circle cx="32" cy="32" r="31" fill="#321057"/>
+  <g fill="none" stroke="#4aa6d7" stroke-width="1.8">
+    <ellipse cx="32" cy="12" rx="9" ry="3.5" transform="rotate(32 32 12)"/>
+    <ellipse cx="32" cy="12" rx="9" ry="3.5" transform="rotate(-32 32 12)"/>
+  </g>
+  <circle cx="32" cy="12" r="2.1" fill="#ef771b"/>
+  <path d="M16 52c3-4 4-7 2-10-3-1-4-4-2-7l-1-2 2-2c-1-7 3-13 10-14 7-1 12 3 12 10v4c0 3-2 5-5 6v4c1 3 4 5 8 7v4H16Z" fill="#261a16"/>
+  <path d="M18 28c1-6 5-9 11-9 4 0 7 2 9 5-3-1-5-1-7 0-3 2-6 2-9 2l-4 2Z" fill="#201514"/>
+  <circle cx="25" cy="34" r="6" fill="#65a53e"/>
+  <path d="M25 29v2m0 6v2m-5-5h2m6 0h2m-8.5-3.5 1.5 1.5m4 4 1.5 1.5m0-7-1.5 1.5m-4 4-1.5 1.5" stroke="#321057" stroke-width="1.7" stroke-linecap="round"/>
+  <circle cx="25" cy="34" r="1.5" fill="#321057"/>
+</svg>
