@@ -53,6 +53,7 @@ h1 em,h2 em { color:var(--orange); font-weight:500; }
 .carousel-slide.is-active { display:block; }
 .carousel-slide img,.carousel-slide video { width:100%; height:100%; display:block; object-fit:cover; object-position:center; }
 .carousel-slide.is-poster img { object-fit:contain; background:#fbf8f2; }
+.carousel-slide.is-portrait img { object-position:center 30%; }
 .slide-caption { position:absolute; right:0; bottom:0; left:0; padding:32px 15px 12px; display:flex; flex-direction:column; gap:3px; background:linear-gradient(transparent,#201329d9); color:white; }
 .slide-caption span { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }.slide-caption strong { font-family:var(--serif); font-size:17px; font-weight:500; }
 .carousel-controls { min-height:40px; display:flex; align-items:center; justify-content:flex-end; gap:8px; padding-top:8px; }
@@ -241,3 +242,25 @@ h1 em,h2 em { color:var(--orange); font-weight:500; }
 .hero-visual:hover .carousel-controls button[data-carousel-prev],.hero-visual:hover .carousel-controls button[data-carousel-next],.hero-visual:focus-within .carousel-controls button[data-carousel-prev],.hero-visual:focus-within .carousel-controls button[data-carousel-next] { opacity:1; pointer-events:auto; }
 .carousel-controls button[data-carousel-prev]:hover,.carousel-controls button[data-carousel-next]:hover { background:var(--orange); }
 @media (hover:none) { .carousel-controls button[data-carousel-prev],.carousel-controls button[data-carousel-next] { opacity:1; pointer-events:auto; } }
+.founder-profile { margin-top:30px; display:grid; grid-template-columns:minmax(190px,.72fr) minmax(0,1.28fr); align-items:center; gap:clamp(24px,5vw,50px); }
+.founder-profile>img { width:100%; aspect-ratio:3/4; display:block; object-fit:cover; object-position:center 24%; border:1px solid #e6e1d8; border-radius:5px; box-shadow:0 18px 42px #32105718; }
+.founder-passion-label { margin:0 0 12px; color:var(--green); font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.founder-profile .information-lead { max-width:none; }
+@media (max-width:560px) { .founder-profile { grid-template-columns:1fr; gap:21px; }.founder-profile>img { width:min(100%,340px); max-height:440px; margin:0 auto; }.founder-passion-label { margin-bottom:9px; } }
+.mission-ticker { width:100%; overflow:hidden; padding:17px 0; border-block:1px solid #ffffff24; background:var(--purple); color:#fff; }
+.mission-ticker-track { width:max-content; display:flex; animation:mission-ticker-scroll 34s linear infinite reverse; }
+.mission-ticker:hover .mission-ticker-track { animation-play-state:paused; }
+.mission-ticker-group { padding-right:42px; display:flex; align-items:center; gap:19px; white-space:nowrap; font-size:clamp(11px,1.35vw,15px); font-weight:700; letter-spacing:.025em; text-shadow:0 1px 3px #16092388; }
+.mission-ticker-label { color:#ffd089; font-size:10px; font-weight:800; letter-spacing:.18em; }
+.mission-ticker-group>span:not(.mission-ticker-label):not(.mission-ticker-star) { color:#ffd34e; }
+.mission-ticker-star { color:#8cc095; font-size:16px; }
+.target-note { color:#77716a; font-size:10px; }
+.fundraising-progress { margin-top:9px; padding-top:12px; border-top:1px solid #e4d9ca; }
+.fundraising-progress-current { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:5px 12px; color:#5d554e; font-size:10px; }
+.fundraising-progress-current strong { color:var(--green); font-family:var(--sans); font-size:16px; font-weight:700; }
+.fundraising-progress-track { height:8px; margin-top:9px; overflow:hidden; border-radius:99px; background:#e7e1d8; }
+.fundraising-progress-track span { height:100%; display:block; border-radius:inherit; background:linear-gradient(90deg,var(--green),#7aab48); transition:width .4s ease; }
+.fundraising-progress small { display:block; margin-top:7px; color:#77716a; font-size:9px; }
+.fundraising-progress-pending { margin:0; color:#77716a; font-size:10px; line-height:1.5; }
+@keyframes mission-ticker-scroll { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion:reduce) { .mission-ticker-track { width:100%; animation:none; }.mission-ticker-group:first-child { width:100%; padding:0 7%; flex-wrap:wrap; justify-content:center; white-space:normal; text-align:center; }.mission-ticker-group:nth-child(2) { display:none; } }

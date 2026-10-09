@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminFundraisingController;
 use App\Http\Controllers\AdminMediaController;
 use App\Http\Middleware\EnsureAdmin;
+use App\Models\FundraisingProgress;
 use App\Models\MediaItem;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,8 @@ Route::get('/', function () {
             ->orderBy('id')
             ->limit(3)
             ->get(),
+        'fundraisingProgress' => FundraisingProgress::query()->find(1),
+        'fundraisingTarget' => FundraisingProgress::TARGET_AMOUNT,
         'hasMediaLibrary' => MediaItem::exists(),
     ]);
 })->name('home');
@@ -50,6 +54,17 @@ Route::get('/information/{page}', function (string $page) {
             ],
             'points' => ['Hands-on STEM learning', 'Mentorship and encouragement', 'Opportunities to grow into future leaders and problem-solvers'],
             'outreach_contact' => ['name' => 'Patricia Kwakye-Boateng', 'phone' => '020 749 5972'],
+        ],
+        'founder' => [
+            'title' => 'Meet Our Founder',
+            'eyebrow' => 'The founder’s passion',
+            'lead' => 'I am passionate about inspiring girls to believe in their potential, explore STEM with confidence, and see education as a pathway to opportunity.',
+            'paragraphs' => [
+                'Through outreach, mentorship, and hands-on learning, I want young girls to feel seen, capable, and empowered to shape their future.',
+            ],
+            'points' => [],
+            'founder_image' => 'images/akuaba-founder.jpg',
+            'founder_image_alt' => 'Portrait of the founder of AkuaBa STEM Girls',
         ],
         'mission' => [
             'title' => 'Our mission',
@@ -123,6 +138,7 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->middleware
 
 Route::middleware(EnsureAdmin::class)->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminMediaController::class, 'index'])->name('dashboard');
+    Route::patch('/fundraising-progress', [AdminFundraisingController::class, 'update'])->name('fundraising-progress.update');
     Route::post('/media', [AdminMediaController::class, 'store'])->name('media.store');
     Route::patch('/media/{mediaItem}', [AdminMediaController::class, 'update'])->name('media.update');
     Route::delete('/media/{mediaItem}', [AdminMediaController::class, 'destroy'])->name('media.destroy');

@@ -8,6 +8,15 @@
         <div class="published-stat"><strong>{{ $publishedCount }}</strong><span>published items</span></div>
     </section>
 
+    <section class="admin-panel fundraising-admin-panel" aria-labelledby="fundraising-admin-heading">
+        <div class="panel-heading"><div><p class="admin-kicker">PUBLIC FUNDRAISING UPDATE</p><h2 id="fundraising-admin-heading">Confirmed amount raised</h2></div><span class="panel-number">00</span></div>
+        <form action="{{ route('admin.fundraising-progress.update') }}" method="post" class="fundraising-admin-form">
+            @csrf @method('PATCH')
+            <div class="field"><label for="amount_raised">Amount raised in Ghana cedis</label><input id="amount_raised" name="amount_raised" type="number" min="0" max="9999999999.99" step="0.01" value="{{ old('amount_raised', $fundraisingProgress?->amount_raised) }}" placeholder="Leave blank until confirmed"><span class="field-hint">Only enter a total confirmed by AkuaBa’s records. Saving it displays the date of confirmation publicly.</span>@error('amount_raised')<span class="field-error">{{ $message }}</span>@enderror</div>
+            <div class="fundraising-admin-actions">@if ($fundraisingProgress?->amount_raised !== null)<span>Current update: GH&#8373; {{ number_format((float) $fundraisingProgress->amount_raised, 2) }}@if ($fundraisingProgress->confirmed_at) · {{ $fundraisingProgress->confirmed_at->format('j M Y') }}@endif</span>@else<span>No confirmed amount is currently displayed.</span>@endif<button class="primary-button" type="submit">Save confirmed amount</button></div>
+        </form>
+    </section>
+
     <section class="admin-panel upload-panel" aria-labelledby="upload-heading">
         <div class="panel-heading"><div><p class="admin-kicker">ADD SOMETHING NEW</p><h2 id="upload-heading">Upload media</h2></div><span class="panel-number">01</span></div>
         <form action="{{ route('admin.media.store') }}" method="post" enctype="multipart/form-data" class="upload-form">

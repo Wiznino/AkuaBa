@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FundraisingProgress;
 use App\Models\MediaItem;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class AdminMediaController extends Controller
         return view('admin.dashboard', [
             'items' => MediaItem::orderBy('sort_order')->orderByDesc('created_at')->get(),
             'publishedCount' => MediaItem::published()->count(),
+            'fundraisingProgress' => FundraisingProgress::query()->find(1),
         ]);
     }
 

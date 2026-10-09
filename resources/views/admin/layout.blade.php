@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#321057">
     <title>@yield('title', 'AkuaBa Content Studio') · AkuaBa</title>
     <link rel="icon" href="{{ asset('images/akuaba-mark.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v=3">
 </head>
 <body class="admin-body">
     <header class="admin-header">
@@ -19,3 +19,4 @@
     </main>
 </body>
 </html>
+

@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=12">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=14">
 </head>
 <body class="information-body">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -18,6 +18,7 @@
         <a class="brand" href="{{ route('home') }}" aria-label="AkuaBa STEM Girls home"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
         <nav class="information-nav" aria-label="Main navigation">
             <a href="{{ route('information.show', 'about') }}">About AkuaBa</a>
+            <a href="{{ route('information.show', 'founder') }}">Our founder</a>
             <a href="{{ route('information.show', 'mission') }}">Our mission</a>
             <a href="{{ route('information.show', 'programs') }}">What we do</a>
             <a href="{{ route('information.show', 'vision') }}">Our vision</a>
@@ -31,7 +32,14 @@
         <section class="information-card" aria-labelledby="information-title">
             <p class="eyebrow"><span class="eyebrow-line"></span> {{ $page['eyebrow'] }}</p>
             <h1 id="information-title">{{ $page['title'] }}</h1>
-            <p class="information-lead">{{ $page['lead'] }}</p>
+            @if (isset($page['founder_image']))
+                <div class="founder-profile">
+                    <img src="{{ asset($page['founder_image']) }}" alt="{{ $page['founder_image_alt'] }}">
+                    <div><p class="founder-passion-label">The founder’s passion</p><p class="information-lead">{{ $page['lead'] }}</p></div>
+                </div>
+            @else
+                <p class="information-lead">{{ $page['lead'] }}</p>
+            @endif
             <div class="information-copy">
                 @foreach ($page['paragraphs'] as $paragraph)
                     <p>{{ $paragraph }}</p>
@@ -81,3 +89,4 @@
     </footer>
 </body>
 </html>
+

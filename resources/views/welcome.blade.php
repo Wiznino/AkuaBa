@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=30">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=39">
 </head>
 <body>
     @php
@@ -46,6 +46,7 @@
             ['type' => 'image', 'url' => asset('images/work-inspire.png'), 'mime_type' => null, 'title' => 'Inspire through science', 'caption' => 'Explore. Discover. Imagine.', 'alt' => 'Ghanaian girls exploring robotics together in a classroom', 'poster' => false],
             ['type' => 'image', 'url' => asset('images/work-experiment.png'), 'mime_type' => null, 'title' => 'Experiment and create', 'caption' => 'Learn by trying things out.', 'alt' => 'Ghanaian girls conducting a colorful chemistry experiment', 'poster' => false],
             ['type' => 'image', 'url' => asset('images/work-design.png'), 'mime_type' => null, 'title' => 'Design and build', 'caption' => 'Turn ideas into working projects.', 'alt' => 'Ghanaian girls building and coding a small robot', 'poster' => false],
+            ['type' => 'image', 'url' => asset('images/akuaba-outreach-classroom.jpg'), 'mime_type' => null, 'title' => 'AkuaBa in the classroom', 'caption' => 'Inspiring girls through outreach.', 'alt' => 'AkuaBa outreach facilitator with students in a classroom', 'poster' => false, 'portrait' => true],
         ]);
     @endphp
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -54,17 +55,25 @@
         <a class="brand" href="#top" aria-label="AkuaBa STEM Girls home"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
         <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
         <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
-            <a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">What we do</a><a href="{{ route('information.show', 'vision') }}">Our vision</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="{{ route('admin.login') }}">Admin sign in</a>
+            <a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">What we do</a><a href="{{ route('information.show', 'vision') }}">Our vision</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="{{ route('admin.login') }}">Admin sign in</a>
         </nav>
         <a class="button button-dark header-cta" href="{{ route('information.show', 'support') }}" target="_blank" rel="noopener noreferrer">Support the outreach <span aria-hidden="true">&#8599;</span></a>
     </header>
+
+    <section class="mission-ticker" aria-label="AkuaBa mission">
+        <span class="visually-hidden">AkuaBa’s mission: to inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences that prepare them to become tomorrow’s leaders, innovators, and changemakers.</span>
+        <div class="mission-ticker-track" aria-hidden="true">
+            <div class="mission-ticker-group"><span class="mission-ticker-label">OUR MISSION</span><span class="mission-ticker-star">&#10038;</span><span>To inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences.</span><span class="mission-ticker-star">&#10038;</span><span>Prepare tomorrow’s leaders, innovators, and changemakers.</span><span class="mission-ticker-star">&#10038;</span></div>
+            <div class="mission-ticker-group"><span class="mission-ticker-label">OUR MISSION</span><span class="mission-ticker-star">&#10038;</span><span>To inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences.</span><span class="mission-ticker-star">&#10038;</span><span>Prepare tomorrow’s leaders, innovators, and changemakers.</span><span class="mission-ticker-star">&#10038;</span></div>
+        </div>
+    </section>
 
     <main id="main-content" tabindex="-1">
         <section class="hero" id="top">
             <div class="hero-visual carousel" data-carousel aria-label="AkuaBa STEM Girls slideshow">
                 <div class="carousel-stage">
                     @foreach ($carouselSlides as $index => $slide)
-                        <figure class="carousel-slide {{ $index === 0 ? 'is-active' : '' }} {{ $slide['poster'] ? 'is-poster' : '' }}" role="group" aria-roledescription="slide" aria-label="{{ $index + 1 }} of {{ $carouselSlides->count() }}: {{ $slide['title'] }}" aria-hidden="{{ $index === 0 ? 'false' : 'true' }}">
+                        <figure class="carousel-slide {{ $index === 0 ? 'is-active' : '' }} {{ $slide['poster'] ? 'is-poster' : '' }} {{ ($slide['portrait'] ?? false) ? 'is-portrait' : '' }}" role="group" aria-roledescription="slide" aria-label="{{ $index + 1 }} of {{ $carouselSlides->count() }}: {{ $slide['title'] }}" aria-hidden="{{ $index === 0 ? 'false' : 'true' }}">
                             @if ($slide['type'] === 'video')
                                 <video controls playsinline preload="metadata" aria-label="{{ $slide['title'] }}"><source src="{{ $slide['url'] }}" type="{{ $slide['mime_type'] }}">Your browser does not support embedded video.</video>
                             @else
@@ -163,7 +172,16 @@
         <section class="impact-section" id="vision"><div class="impact-image"><a href="{{ asset('images/akuaba-vision.jpg') }}" target="_blank" rel="noopener noreferrer" aria-label="Open the AkuaBa vision poster"><img src="{{ asset('images/akuaba-vision.jpg') }}" alt="AkuaBa STEM Girls vision poster showing girls exploring science, engineering, and technology" loading="lazy"></a></div><div class="impact-copy"><p class="eyebrow"><span class="eyebrow-line"></span> Our vision</p><h2>Every girl deserves<br><em>room to imagine.</em></h2><p>We envision a future where every girl has the confidence, opportunity, and support to explore STEM, pursue her ambitions, and become a leader who transforms her community and the world.</p><div class="vision-note"><span aria-hidden="true">&#10038;</span> Scientists. Engineers. Technologists. Problem-solvers.</div><a class="poster-link" href="{{ asset('images/akuaba-vision.jpg') }}" target="_blank" rel="noopener noreferrer">Open the vision poster <span aria-hidden="true">&#8599;</span></a></div></section>
 
         <section class="fundraiser-section" id="sponsor"><div class="section-wrap">
-            <div class="fundraiser-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> Help make hands-on STEM possible</p><h2>Equip a classroom.<br><em>Open up a future.</em></h2></div><div class="target-card"><span class="target-label">Outreach sponsorship target</span><strong>GH&#8373; 35,780</strong><span>Every contribution moves us forward.</span></div></div>
+            <div class="fundraiser-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> Help make hands-on STEM possible</p><h2>Equip a classroom.<br><em>Open up a future.</em></h2></div><div class="target-card"><span class="target-label">Outreach sponsorship target</span><strong>GH&#8373; {{ number_format($fundraisingTarget) }}</strong><span class="target-note">Every contribution moves us forward.</span><div class="fundraising-progress">
+                @if ($fundraisingProgress?->amount_raised !== null)
+                    @php($progressPercent = min(100, ((float) $fundraisingProgress->amount_raised / $fundraisingTarget) * 100))
+                    <div class="fundraising-progress-current"><span>Confirmed amount raised</span><strong>GH&#8373; {{ number_format((float) $fundraisingProgress->amount_raised, 2) }}</strong></div>
+                    <div class="fundraising-progress-track" role="progressbar" aria-label="Fundraising progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ number_format($progressPercent, 1, '.', '') }}"><span style="width:{{ $progressPercent }}%"></span></div>
+                    <small>@if ($fundraisingProgress->confirmed_at) Confirmed {{ $fundraisingProgress->confirmed_at->format('j M Y') }} @else Confirmed update @endif</small>
+                @else
+                    <p class="fundraising-progress-pending">Verified amount raised coming soon.</p>
+                @endif
+            </div></div></div>
             <div class="fundraiser-grid">
                 <div class="equipment-card"><h3><span aria-hidden="true">&#10003;</span> What the funds will support</h3><ul><li>Projector and screen</li><li>3.0 kW inverter generator</li><li>Rechargeable PA system</li><li>Cables, safety, and transport accessories</li><li>Pull-up banners, facilitator T-shirts, wristbands, and STEM prizes</li></ul><p class="equipment-note">Before purchasing equipment, please contact Patricia Kwakye-Boateng to confirm the recommended specifications.</p></div>
                 <div class="donate-card"><div class="donate-card-top"><span class="donate-icon" aria-hidden="true">&#9829;</span><div><h3>Support the outreach</h3><p>Contribute any amount or donate equipment in kind. AkuaBa will begin purchasing and using equipment as funds are received.</p></div></div><div class="payment-details"><p class="eyebrow"><span class="eyebrow-line"></span> Mobile Money</p><div><span>Number</span><a href="tel:0207495972">020 749 5972</a></div><div><span>Name</span><strong>Patricia Kwakye-Boateng</strong></div><div><span>Reference</span><strong>AkuaBa</strong></div></div><a class="button button-dark donate-button" href="tel:0207495972">Call to confirm details <span aria-hidden="true">&#8599;</span></a><small>Please confirm payment instructions with AkuaBa before sending a contribution.</small><a class="flyer-link" href="{{ asset('images/akuaba-fundraiser.jpg') }}" download="AkuaBa-STEM-Girls-fundraiser.jpg">Download official sponsorship flyer <span aria-hidden="true">&#8595;</span></a></div>
@@ -188,7 +206,7 @@
 
         <section class="join-section section-wrap" id="get-involved"><div class="join-flower" aria-hidden="true">&#9883;</div><p class="eyebrow"><span class="eyebrow-line"></span> For girls. For communities. For the future.</p><h2>Let's build a future<br>where every girl can <em>thrive.</em></h2><p>Volunteer, mentor, sponsor equipment, or share the work AkuaBa is doing.</p><a class="button button-orange" href="tel:0207495972">Connect with AkuaBa <span aria-hidden="true">&#8599;</span></a><small>AkuaBa STEM Girls Outreach · <a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">Find us on LinkedIn</a></small></section>
     </main>
-    <footer class="site-footer"><div class="footer-identity"><a class="brand footer-brand" href="#top"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a><p>Our heritage. Our STEM future.</p></div><div class="footer-links"><a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">Programs</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="tel:0207495972">Call AkuaBa</a><a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a></div><span class="copyright">&copy; {{ date('Y') }} AkuaBa STEM Girls</span></footer>
+    <footer class="site-footer"><div class="footer-identity"><a class="brand footer-brand" href="#top"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a><p>Our heritage. Our STEM future.</p></div><div class="footer-links"><a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">Programs</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="tel:0207495972">Call AkuaBa</a><a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a></div><span class="copyright">&copy; {{ date('Y') }} AkuaBa STEM Girls</span></footer>
     <script>
         const menuButton = document.querySelector('.menu-toggle');
         const navigation = document.querySelector('.main-nav');
@@ -275,6 +293,13 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
