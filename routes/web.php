@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminFundraisingController;
 use App\Http\Controllers\AdminMediaController;
+use App\Http\Controllers\AdminOutreachBroadcastController;
+use App\Http\Controllers\OutreachSubscriptionController;
 use App\Http\Middleware\EnsureAdmin;
 use App\Models\FundraisingProgress;
 use App\Models\MediaItem;
@@ -31,6 +33,12 @@ Route::get('/', function () {
         'hasMediaLibrary' => MediaItem::exists(),
     ]);
 })->name('home');
+
+Route::post('/outreach-signup', [OutreachSubscriptionController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('outreach.subscribe');
+
+Route::view('/sign-up', 'outreach-signup')->name('outreach.signup');
 
 Route::get('/videos', function () {
     return view('videos', [
@@ -139,6 +147,7 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->middleware
 Route::middleware(EnsureAdmin::class)->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminMediaController::class, 'index'])->name('dashboard');
     Route::patch('/fundraising-progress', [AdminFundraisingController::class, 'update'])->name('fundraising-progress.update');
+    Route::post('/outreach-broadcasts', [AdminOutreachBroadcastController::class, 'store'])->name('outreach.broadcast');
     Route::post('/media', [AdminMediaController::class, 'store'])->name('media.store');
     Route::patch('/media/{mediaItem}', [AdminMediaController::class, 'update'])->name('media.update');
     Route::delete('/media/{mediaItem}', [AdminMediaController::class, 'destroy'])->name('media.destroy');

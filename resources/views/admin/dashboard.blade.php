@@ -17,6 +17,43 @@
         </form>
     </section>
 
+    <section class="admin-panel subscriber-admin-panel" aria-labelledby="subscriber-admin-heading">
+        <div class="panel-heading"><div><p class="admin-kicker">OUTREACH EMAIL UPDATES</p><h2 id="subscriber-admin-heading">Interested supporters</h2></div><span class="panel-number">{{ $subscribers->total() }}</span></div>
+        <p class="subscriber-intro">People who asked to receive updates about AkuaBa outreach. Keep these details private and use them only for the updates they signed up for.</p>
+        @if ($subscribers->total() > 0)
+            <form action="{{ route('admin.outreach.broadcast') }}" method="post" class="upload-form">
+                @csrf
+                <div class="form-grid">
+                    <div class="field field-wide">
+                        <label for="broadcast-subject">Email subject</label>
+                        <input id="broadcast-subject" name="subject" value="{{ old('subject') }}" maxlength="150" required>
+                        @error('subject')<span class="field-error">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="field field-wide">
+                        <label for="broadcast-body">Message</label>
+                        <textarea id="broadcast-body" name="body" rows="6" maxlength="10000" required>{{ old('body') }}</textarea>
+                        @error('body')<span class="field-error">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+                @error('recipients')<span class="field-error">{{ $message }}</span>@enderror
+                <div class="upload-footer">
+                    <p>Each opted-in subscriber receives a separate email, so their addresses stay private.</p>
+                    <button class="primary-button" type="submit">Send update to all subscribers</button>
+                </div>
+            </form>
+        @endif
+        @if ($subscribers->isEmpty())
+            <div class="empty-state"><h3>No signups yet</h3><p>New outreach update subscribers will appear here.</p></div>
+        @else
+            <div class="subscriber-table-wrap"><table class="subscriber-table"><thead><tr><th>Name</th><th>Email</th><th>Signed up</th></tr></thead><tbody>
+                @foreach ($subscribers as $subscriber)
+                    <tr><td>{{ $subscriber->first_name }} {{ $subscriber->last_name }}</td><td><a href="mailto:{{ $subscriber->email }}">{{ $subscriber->email }}</a></td><td>{{ $subscriber->created_at->format('j M Y') }}</td></tr>
+                @endforeach
+            </tbody></table></div>
+            {{ $subscribers->links() }}
+        @endif
+    </section>
+
     <section class="admin-panel upload-panel" aria-labelledby="upload-heading">
         <div class="panel-heading"><div><p class="admin-kicker">ADD SOMETHING NEW</p><h2 id="upload-heading">Upload media</h2></div><span class="panel-number">01</span></div>
         <form action="{{ route('admin.media.store') }}" method="post" enctype="multipart/form-data" class="upload-form">

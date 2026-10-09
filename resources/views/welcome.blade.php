@@ -11,11 +11,11 @@
     <meta property="og:description" content="Inspire. Empower. Equip. Join AkuaBa in opening up STEM opportunities for girls.">
     <meta property="og:image" content="{{ asset('images/akuaba-stem-hero.png') }}">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="{{ asset('images/akuaba-mark.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('images/akuaba-logo.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=41">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=57">
 </head>
 <body>
     @php
@@ -46,18 +46,19 @@
             ['type' => 'image', 'url' => asset('images/work-inspire.png'), 'mime_type' => null, 'title' => 'Inspire through science', 'caption' => 'Explore. Discover. Imagine.', 'alt' => 'Ghanaian girls exploring robotics together in a classroom', 'poster' => false],
             ['type' => 'image', 'url' => asset('images/work-experiment.png'), 'mime_type' => null, 'title' => 'Experiment and create', 'caption' => 'Learn by trying things out.', 'alt' => 'Ghanaian girls conducting a colorful chemistry experiment', 'poster' => false],
             ['type' => 'image', 'url' => asset('images/work-design.png'), 'mime_type' => null, 'title' => 'Design and build', 'caption' => 'Turn ideas into working projects.', 'alt' => 'Ghanaian girls building and coding a small robot', 'poster' => false],
-            ['type' => 'image', 'url' => asset('images/akuaba-outreach-classroom.jpg'), 'mime_type' => null, 'title' => 'AkuaBa in the classroom', 'caption' => 'Inspiring girls through outreach.', 'alt' => 'AkuaBa outreach facilitator with students in a classroom', 'poster' => false, 'portrait' => true],
         ]);
     @endphp
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="announcement">Our heritage. Our STEM future. <a href="#sponsor">Help equip the next generation <span aria-hidden="true">&#8599;</span></a></div>
     <header class="site-header">
-        <a class="brand" href="#top" aria-label="AkuaBa STEM Girls home"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
-        <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
+        <a class="brand" href="#top" aria-label="AkuaBa STEM Girls home"><span class="brand-icon"><img src="{{ asset('images/akuaba-logo.png') }}" alt=""></span><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
+        <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation desktop-menu-panel"><span></span><span></span><span></span></button>
         <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
-            <a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">What we do</a><a href="{{ route('information.show', 'vision') }}">Our vision</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="{{ route('admin.login') }}">Admin sign in</a>
+            <a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">What we do</a><a href="{{ route('information.show', 'vision') }}">Our vision</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Donate</a><a href="{{ route('outreach.signup') }}">Sign up</a><a class="admin-menu-link" href="{{ route('admin.login') }}">Admin sign in</a>
         </nav>
-        <a class="button button-dark header-cta" href="{{ route('information.show', 'support') }}" target="_blank" rel="noopener noreferrer">Support the outreach <span aria-hidden="true">&#8599;</span></a>
+        <nav class="desktop-menu-panel main-nav" id="desktop-menu-panel" aria-label="Expanded navigation" hidden>
+            <a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">What we do</a><a href="{{ route('information.show', 'vision') }}">Our vision</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Donate</a><a href="{{ route('outreach.signup') }}">Sign up</a><a class="admin-menu-link" href="{{ route('admin.login') }}">Admin sign in</a>
+        </nav>
     </header>
 
     <section class="mission-ticker" aria-label="AkuaBa mission">
@@ -187,6 +188,20 @@
             </div>
         </div></section>
 
+        <section class="thank-you-section section-wrap" aria-labelledby="thank-you-title">
+            <div class="thank-you-heading">
+                <p class="eyebrow"><span class="eyebrow-line"></span> With gratitude</p>
+                <h2 id="thank-you-title">Thank you for <em>showing up.</em></h2>
+                <p>AkuaBa is grateful to everyone who gives their time, opens doors, and encourages girls to explore their future.</p>
+            </div>
+            <div class="thank-you-grid">
+                <article class="thank-you-card"><span class="thank-you-mark" aria-hidden="true">&#10084;</span><h3>To our volunteers</h3><p>Thank you for sharing your time, care, and skills with AkuaBa’s girls and communities.</p></article>
+                <article class="thank-you-card"><span class="thank-you-mark" aria-hidden="true">&#10022;</span><h3>To our schools</h3><p>Thank you for welcoming AkuaBa into your learning communities and making room for new ideas.</p></article>
+                <article class="thank-you-card"><span class="thank-you-mark" aria-hidden="true">&#10038;</span><h3>To our supporters</h3><p>Thank you for every contribution, equipment gift, partnership, and word of encouragement.</p></article>
+            </div>
+            <p class="thank-you-footer">Your support helps make hands-on learning possible. We appreciate you.</p>
+        </section>
+
         @if ($resources->isNotEmpty())
             <section class="resource-section section-wrap" aria-labelledby="resources-title">
                 <div class="resource-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Shared by AkuaBa</p><h2 id="resources-title">Resources for the <em>community.</em></h2></div>
@@ -203,28 +218,58 @@
             </section>
         @endif
 
-        <section class="join-section section-wrap" id="get-involved"><div class="join-flower" aria-hidden="true">&#9883;</div><p class="eyebrow"><span class="eyebrow-line"></span> For girls. For communities. For the future.</p><h2>Let's build a future<br>where every girl can <em>thrive.</em></h2><p>Volunteer, mentor, sponsor equipment, or share the work AkuaBa is doing.</p><a class="button button-orange" href="tel:0207495972">Connect with AkuaBa <span aria-hidden="true">&#8599;</span></a><small>AkuaBa STEM Girls Outreach · <a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">Find us on LinkedIn</a></small></section>
+        <section class="join-section section-wrap" id="get-involved" aria-labelledby="get-involved-title">
+            <div class="join-flower" aria-hidden="true">&#9883;</div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> For girls. For communities. For the future.</p>
+            <h2 id="get-involved-title">There’s a place for you<br>in AkuaBa’s <em>future.</em></h2>
+            <p>Whether you give, volunteer your time, or open a door to partnership, you can help girls explore STEM with confidence.</p>
+            <div class="involvement-choices">
+                <a class="involvement-choice involvement-donate" href="#sponsor"><span class="involvement-choice-icon" aria-hidden="true">&#9829;</span><h3>Donate</h3><p>Help provide the equipment and resources that make hands-on STEM outreach possible.</p><strong>Explore ways to give <span aria-hidden="true">&#8594;</span></strong></a>
+                <a class="involvement-choice involvement-volunteer" href="tel:0207495972"><span class="involvement-choice-icon" aria-hidden="true">&#10022;</span><h3>Volunteer</h3><p>Share your time, skills, or encouragement with AkuaBa and the girls taking part.</p><strong>Call 020 749 5972 <span aria-hidden="true">&#8599;</span></strong></a>
+                <a class="involvement-choice involvement-partner" href="tel:0207495972"><span class="involvement-choice-icon" aria-hidden="true">&#10038;</span><h3>Partner</h3><p>Explore how your school, organization, or community can work with AkuaBa.</p><strong>Discuss a partnership <span aria-hidden="true">&#8599;</span></strong></a>
+            </div>
+            <small>AkuaBa STEM Girls Outreach · <a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">Find us on LinkedIn</a></small>
+        </section>
+
+        <section class="newsletter-section" id="newsletter" aria-labelledby="newsletter-title">
+            <div class="newsletter-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> AkuaBa email updates</p>
+                <h2 id="newsletter-title">Stay close to the <em>outreach.</em></h2>
+                <p>Sign up for occasional news about AkuaBa’s STEM activities, upcoming outreach, and ways to get involved.</p>
+            </div>
+            @include('partials.outreach-signup-form')
+        </section>
     </main>
-    <footer class="site-footer"><div class="footer-identity"><a class="brand footer-brand" href="#top"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a><p>Our heritage. Our STEM future.</p></div><div class="footer-links"><a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">Programs</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="tel:0207495972">Call AkuaBa</a><a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a></div><span class="copyright">&copy; {{ date('Y') }} AkuaBa STEM Girls</span></footer>
+    <footer class="site-footer"><div class="footer-identity"><a class="brand footer-brand" href="#top" aria-label="AkuaBa STEM Girls home"><span class="brand-icon"><img src="{{ asset('images/akuaba-logo.png') }}" alt=""></span><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a><p>Our heritage. Our STEM future.</p></div><div class="footer-links"><a href="{{ route('information.show', 'about') }}">About AkuaBa</a><a href="{{ route('information.show', 'founder') }}">Our founder</a><a href="{{ route('information.show', 'mission') }}">Our mission</a><a href="{{ route('information.show', 'programs') }}">Programs</a><a href="{{ route('information.show', 'impact') }}">Our impact</a><a href="{{ route('information.show', 'support') }}">Support us</a><a href="{{ route('outreach.signup') }}">Email updates</a><a href="tel:0207495972">Call AkuaBa</a><a href="https://www.linkedin.com/search/results/all/?keywords=AkuaBa%20STEM%20Girls%20Outreach" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a></div><span class="copyright">&copy; {{ date('Y') }} AkuaBa STEM Girls</span></footer>
     <script>
         const menuButton = document.querySelector('.menu-toggle');
         const navigation = document.querySelector('.main-nav');
+        const desktopMenu = document.querySelector('.desktop-menu-panel');
         menuButton.addEventListener('click', () => {
             const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
             menuButton.setAttribute('aria-expanded', String(!isOpen));
             menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
-            navigation.classList.toggle('is-open', !isOpen);
+            if (window.matchMedia('(min-width: 1151px)').matches) {
+                desktopMenu.hidden = isOpen;
+                desktopMenu.classList.toggle('is-open', !isOpen);
+            } else {
+                navigation.classList.toggle('is-open', !isOpen);
+            }
         });
-        navigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        [...navigation.querySelectorAll('a'), ...desktopMenu.querySelectorAll('a')].forEach((link) => link.addEventListener('click', () => {
             menuButton.setAttribute('aria-expanded', 'false');
             menuButton.setAttribute('aria-label', 'Open navigation');
             navigation.classList.remove('is-open');
+            desktopMenu.classList.remove('is-open');
+            desktopMenu.hidden = true;
         }));
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
                 menuButton.setAttribute('aria-expanded', 'false');
                 menuButton.setAttribute('aria-label', 'Open navigation');
                 navigation.classList.remove('is-open');
+                desktopMenu.classList.remove('is-open');
+                desktopMenu.hidden = true;
                 menuButton.focus();
             }
         });
@@ -286,7 +331,7 @@
             if (!reducedMotion) {
                 window.setInterval(() => {
                     if (!paused && !document.hidden) showSlide(current + 1);
-                }, 2000);
+                }, 5000);
             }
         });
     </script>

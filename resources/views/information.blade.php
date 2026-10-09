@@ -6,16 +6,16 @@
     <meta name="theme-color" content="#321057">
     <meta name="description" content="{{ $page['lead'] }}">
     <title>{{ $page['title'] }} | AkuaBa STEM Girls</title>
-    <link rel="icon" href="{{ asset('images/akuaba-mark.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('images/akuaba-logo.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=14">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=15">
 </head>
 <body class="information-body">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header information-header">
-        <a class="brand" href="{{ route('home') }}" aria-label="AkuaBa STEM Girls home"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
+        <a class="brand" href="{{ route('home') }}" aria-label="AkuaBa STEM Girls home"><span class="brand-icon"><img src="{{ asset('images/akuaba-logo.png') }}" alt=""></span><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
         <nav class="information-nav" aria-label="Main navigation">
             <a href="{{ route('information.show', 'about') }}">About AkuaBa</a>
             <a href="{{ route('information.show', 'founder') }}">Our founder</a>
@@ -84,7 +84,7 @@
         </section>
     </main>
     <footer class="site-footer information-footer">
-        <div class="footer-identity"><a class="brand footer-brand" href="{{ route('home') }}"><img class="brand-logo" src="{{ asset('images/akuaba-mark.svg') }}" alt=""><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a><p>Our heritage. Our STEM future.</p></div>
+        <div class="footer-identity"><a class="brand footer-brand" href="{{ route('home') }}" aria-label="AkuaBa STEM Girls home"><span class="brand-icon"><img src="{{ asset('images/akuaba-logo.png') }}" alt=""></span><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a><p>Our heritage. Our STEM future.</p></div>
         <span class="copyright">&copy; {{ date('Y') }} AkuaBa STEM Girls</span>
     </footer>
 </body>

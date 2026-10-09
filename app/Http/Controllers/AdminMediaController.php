@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FundraisingProgress;
 use App\Models\MediaItem;
+use App\Models\OutreachSubscriber;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -18,6 +19,7 @@ class AdminMediaController extends Controller
             'items' => MediaItem::orderBy('sort_order')->orderByDesc('created_at')->get(),
             'publishedCount' => MediaItem::published()->count(),
             'fundraisingProgress' => FundraisingProgress::query()->find(1),
+            'subscribers' => OutreachSubscriber::query()->orderByDesc('created_at')->paginate(25),
         ]);
     }
 
