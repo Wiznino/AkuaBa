@@ -250,7 +250,7 @@ h1 em,h2 em { color:var(--orange); font-weight:500; }
 .mission-ticker { width:100%; overflow:hidden; padding:17px 0; border-block:1px solid #ffffff24; background:var(--purple); color:#fff; }
 .mission-ticker-track { width:max-content; display:flex; animation:mission-ticker-scroll 34s linear infinite reverse; }
 .mission-ticker:hover .mission-ticker-track { animation-play-state:paused; }
-.mission-ticker-group { padding-right:42px; display:flex; align-items:center; gap:19px; white-space:nowrap; font-size:clamp(11px,1.35vw,15px); font-weight:700; letter-spacing:.025em; text-shadow:0 1px 3px #16092388; }
+.mission-ticker-group { padding-right:42px; display:flex; align-items:center; gap:19px; white-space:nowrap; font-size:clamp(13px,1.55vw,17px); font-weight:800; letter-spacing:.025em; text-shadow:0 1px 3px #16092388; }
 .mission-ticker-label { color:#ffd089; font-size:10px; font-weight:800; letter-spacing:.18em; }
 .mission-ticker-group>span:not(.mission-ticker-label):not(.mission-ticker-star) { color:#ffd34e; }
 .mission-ticker-star { color:#8cc095; font-size:16px; }

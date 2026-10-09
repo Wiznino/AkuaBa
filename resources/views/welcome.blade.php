@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=39">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=41">
 </head>
 <body>
     @php
@@ -61,10 +61,9 @@
     </header>
 
     <section class="mission-ticker" aria-label="AkuaBa mission">
-        <span class="visually-hidden">AkuaBa’s mission: to inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences that prepare them to become tomorrow’s leaders, innovators, and changemakers.</span>
         <div class="mission-ticker-track" aria-hidden="true">
-            <div class="mission-ticker-group"><span class="mission-ticker-label">OUR MISSION</span><span class="mission-ticker-star">&#10038;</span><span>To inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences.</span><span class="mission-ticker-star">&#10038;</span><span>Prepare tomorrow’s leaders, innovators, and changemakers.</span><span class="mission-ticker-star">&#10038;</span></div>
-            <div class="mission-ticker-group"><span class="mission-ticker-label">OUR MISSION</span><span class="mission-ticker-star">&#10038;</span><span>To inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences.</span><span class="mission-ticker-star">&#10038;</span><span>Prepare tomorrow’s leaders, innovators, and changemakers.</span><span class="mission-ticker-star">&#10038;</span></div>
+            <div class="mission-ticker-group"><span class="mission-ticker-star">&#10038;</span><span>To inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences.</span><span class="mission-ticker-star">&#10038;</span><span>Prepare tomorrow’s leaders, innovators, and changemakers.</span><span class="mission-ticker-star">&#10038;</span></div>
+            <div class="mission-ticker-group"><span class="mission-ticker-star">&#10038;</span><span>To inspire, empower, and equip girls through STEM education, mentorship, and practical learning experiences.</span><span class="mission-ticker-star">&#10038;</span><span>Prepare tomorrow’s leaders, innovators, and changemakers.</span><span class="mission-ticker-star">&#10038;</span></div>
         </div>
     </section>
 
