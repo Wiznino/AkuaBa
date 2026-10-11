@@ -35,7 +35,17 @@
             @if (isset($page['founder_image']))
                 <div class="founder-profile">
                     <img src="{{ asset($page['founder_image']) }}" alt="{{ $page['founder_image_alt'] }}">
-                    <div><p class="founder-passion-label">The founder’s passion</p><p class="information-lead">{{ $page['lead'] }}</p></div>
+                    <div>
+                        <p class="founder-passion-label">The founder’s passion</p>
+                        <p class="information-lead founder-passion-lead">{{ $page['lead'] }}</p>
+                        @if (isset($page['founder_credentials']))
+                            <div class="founder-credentials">
+                                @foreach ($page['founder_credentials'] as $credential)
+                                    <p class="information-lead">{{ $credential }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
                 </div>
             @else
                 <p class="information-lead">{{ $page['lead'] }}</p>
@@ -89,4 +99,3 @@
     </footer>
 </body>
 </html>
-

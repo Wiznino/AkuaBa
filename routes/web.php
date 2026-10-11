@@ -70,6 +70,11 @@ Route::get('/information/{page}', function (string $page) {
             'paragraphs' => [
                 'Through outreach, mentorship, and hands-on learning, I want young girls to feel seen, capable, and empowered to shape their future.',
             ],
+            'founder_credentials' => [
+                'Mechanical Engineering Lecturer at Accra Technical University (ATU)',
+                'PhD in Mechanical Engineering, University of Johannesburg, South Africa',
+                'ASHRAE Student Activist Chair, ASHRAE Ghana Chapter',
+            ],
             'points' => [],
             'founder_image' => 'images/akuaba-founder.jpg',
             'founder_image_alt' => 'Portrait of the founder of AkuaBa STEM Girls',
