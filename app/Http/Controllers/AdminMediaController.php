@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EquipmentSponsorship;
 use App\Models\FundraisingProgress;
 use App\Models\MediaItem;
 use App\Models\OutreachSubscriber;
+use App\Models\PartnershipInquiry;
+use App\Models\VolunteerRegistration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -20,6 +23,18 @@ class AdminMediaController extends Controller
             'publishedCount' => MediaItem::published()->count(),
             'fundraisingProgress' => FundraisingProgress::query()->find(1),
             'subscribers' => OutreachSubscriber::query()->orderByDesc('created_at')->paginate(25),
+            'volunteers' => VolunteerRegistration::query()
+                ->orderByDesc('created_at')
+                ->orderByDesc('id')
+                ->paginate(25, ['*'], 'volunteer_page'),
+            'partnershipInquiries' => PartnershipInquiry::query()
+                ->orderByDesc('created_at')
+                ->orderByDesc('id')
+                ->paginate(25, ['*'], 'partnership_page'),
+            'equipmentSponsorships' => EquipmentSponsorship::query()
+                ->orderByDesc('created_at')
+                ->orderByDesc('id')
+                ->paginate(25, ['*'], 'sponsorship_page'),
         ]);
     }
 

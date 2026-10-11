@@ -17,6 +17,93 @@
         </form>
     </section>
 
+    <section class="admin-panel subscriber-admin-panel" aria-labelledby="volunteer-admin-heading">
+        <div class="panel-heading"><div><p class="admin-kicker">VOLUNTEER REGISTRATIONS</p><h2 id="volunteer-admin-heading">Interested volunteers</h2></div><span class="panel-number">{{ $volunteers->total() }}</span></div>
+        <p class="subscriber-intro">People who agreed to be contacted about volunteering with AkuaBa. Use these details only to follow up about volunteer opportunities.</p>
+        @if ($volunteers->isEmpty())
+            <div class="empty-state"><h3>No volunteer registrations yet</h3><p>People who submit the volunteer form will appear here.</p></div>
+        @else
+            <div class="subscriber-table-wrap"><table class="subscriber-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Skills / interests</th><th>Availability</th><th>Registered</th><th>Actions</th></tr></thead><tbody>
+                @foreach ($volunteers as $volunteer)
+                    <tr>
+                        <td>{{ $volunteer->name }}</td>
+                        <td><a href="mailto:{{ $volunteer->email }}">{{ $volunteer->email }}</a></td>
+                        <td><a href="tel:{{ preg_replace('/[^0-9+]/', '', $volunteer->phone) }}">{{ $volunteer->phone }}</a></td>
+                        <td>{{ $volunteer->interests ?: '—' }}</td>
+                        <td>{{ $volunteer->availability ?: '—' }}</td>
+                        <td>{{ $volunteer->created_at->format('j M Y') }}</td>
+                        <td>
+                            <form method="post" action="{{ route('admin.volunteers.destroy', $volunteer) }}" onsubmit="return confirm('Remove this volunteer registration?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="quiet-button" type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody></table></div>
+            {{ $volunteers->links() }}
+        @endif
+    </section>
+
+    <section class="admin-panel subscriber-admin-panel" aria-labelledby="partnership-admin-heading">
+        <div class="panel-heading"><div><p class="admin-kicker">PARTNERSHIP INQUIRIES</p><h2 id="partnership-admin-heading">Interested partners</h2></div><span class="panel-number">{{ $partnershipInquiries->total() }}</span></div>
+        <p class="subscriber-intro">Organizations and schools that have asked about working with AkuaBa. Use their details only to respond to their inquiry.</p>
+        @if ($partnershipInquiries->isEmpty())
+            <div class="empty-state"><h3>No partnership inquiries yet</h3><p>Submitted inquiries will appear here.</p></div>
+        @else
+            <div class="subscriber-table-wrap"><table class="subscriber-table"><thead><tr><th>Organization</th><th>Contact</th><th>Email</th><th>Phone</th><th>Proposal</th><th>Received</th><th>Actions</th></tr></thead><tbody>
+                @foreach ($partnershipInquiries as $inquiry)
+                    <tr>
+                        <td>{{ $inquiry->organization }}</td>
+                        <td>{{ $inquiry->contact_name }}</td>
+                        <td><a href="mailto:{{ $inquiry->email }}">{{ $inquiry->email }}</a></td>
+                        <td><a href="tel:{{ preg_replace('/[^0-9+]/', '', $inquiry->phone) }}">{{ $inquiry->phone }}</a></td>
+                        <td>{{ $inquiry->proposal }}</td>
+                        <td>{{ $inquiry->created_at->format('j M Y') }}</td>
+                        <td>
+                            <form method="post" action="{{ route('admin.partnership-inquiries.destroy', $inquiry) }}" onsubmit="return confirm('Remove this partnership inquiry?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="quiet-button" type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody></table></div>
+            {{ $partnershipInquiries->links() }}
+        @endif
+    </section>
+
+    <section class="admin-panel subscriber-admin-panel" aria-labelledby="equipment-sponsorship-admin-heading">
+        <div class="panel-heading"><div><p class="admin-kicker">EQUIPMENT SPONSORSHIP INQUIRIES</p><h2 id="equipment-sponsorship-admin-heading">Interested equipment sponsors</h2></div><span class="panel-number">{{ $equipmentSponsorships->total() }}</span></div>
+        <p class="subscriber-intro">People who have expressed interest in sponsoring outreach equipment. Use their details only to follow up about their inquiry.</p>
+        @if ($equipmentSponsorships->isEmpty())
+            <div class="empty-state"><h3>No equipment sponsorship inquiries yet</h3><p>Submitted sponsorship inquiries will appear here.</p></div>
+        @else
+            <div class="subscriber-table-wrap"><table class="subscriber-table"><thead><tr><th>Contact</th><th>Email</th><th>Phone</th><th>Equipment</th><th>Message</th><th>Received</th><th>Actions</th></tr></thead><tbody>
+                @foreach ($equipmentSponsorships as $sponsorship)
+                    <tr>
+                        <td>{{ $sponsorship->contact_name }}</td>
+                        <td><a href="mailto:{{ $sponsorship->email }}">{{ $sponsorship->email }}</a></td>
+                        <td><a href="tel:{{ preg_replace('/[^0-9+]/', '', $sponsorship->phone) }}">{{ $sponsorship->phone }}</a></td>
+                        <td>{{ $sponsorship->equipment }}</td>
+                        <td>{{ $sponsorship->message ?: '—' }}</td>
+                        <td>{{ $sponsorship->created_at->format('j M Y') }}</td>
+                        <td>
+                            <form method="post" action="{{ route('admin.equipment-sponsorships.destroy', $sponsorship) }}" onsubmit="return confirm('Remove this equipment sponsorship inquiry?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="quiet-button" type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody></table></div>
+            {{ $equipmentSponsorships->links() }}
+        @endif
+    </section>
+
     <section class="admin-panel subscriber-admin-panel" aria-labelledby="subscriber-admin-heading">
         <div class="panel-heading"><div><p class="admin-kicker">OUTREACH EMAIL UPDATES</p><h2 id="subscriber-admin-heading">Interested supporters</h2></div><span class="panel-number">{{ $subscribers->total() }}</span></div>
         <p class="subscriber-intro">People who asked to receive updates about AkuaBa outreach. Keep these details private and use them only for the updates they signed up for.</p>

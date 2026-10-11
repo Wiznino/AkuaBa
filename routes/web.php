@@ -4,8 +4,12 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminFundraisingController;
 use App\Http\Controllers\AdminMediaController;
 use App\Http\Controllers\AdminOutreachBroadcastController;
+use App\Http\Controllers\EquipmentSponsorshipController;
 use App\Http\Controllers\OutreachSubscriptionController;
+use App\Http\Controllers\PartnershipInquiryController;
+use App\Http\Controllers\VolunteerRegistrationController;
 use App\Http\Middleware\EnsureAdmin;
+use App\Models\EquipmentSponsorship;
 use App\Models\FundraisingProgress;
 use App\Models\MediaItem;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +41,18 @@ Route::get('/', function () {
 Route::post('/outreach-signup', [OutreachSubscriptionController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('outreach.subscribe');
+
+Route::post('/volunteer-signup', [VolunteerRegistrationController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('volunteer.register');
+
+Route::post('/partnership-inquiries', [PartnershipInquiryController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('partnership-inquiries.store');
+
+Route::post('/equipment-sponsorships', [EquipmentSponsorshipController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('equipment-sponsorships.store');
 
 Route::view('/sign-up', 'outreach-signup')->name('outreach.signup');
 
@@ -127,14 +143,55 @@ Route::get('/information/{page}', function (string $page) {
                 'Contribute any amount or donate equipment in kind. Purchases will begin as funds are received.',
                 'Before purchasing equipment, contact Patricia Kwakye-Boateng to confirm the recommended specifications.',
             ],
-            'points' => ['Projector and screen', '3.0 kW inverter generator', 'Rechargeable PA system', 'Cables, safety, and transport accessories', 'Banners, facilitator T-shirts, wristbands, and STEM prizes'],
+            'points' => EquipmentSponsorship::EQUIPMENT_OPTIONS,
             'mobile_money' => ['number' => '020 749 5972', 'name' => 'Patricia Kwakye-Boateng', 'reference' => 'AkuaBa'],
             'support_actions' => [
-                ['title' => 'Donate', 'description' => 'Contribute any amount by Mobile Money. Confirm the payment details before sending.', 'label' => 'View payment details', 'href' => '#mobile-money'],
-                ['title' => 'Sponsor equipment', 'description' => 'Fund a full item or contribute toward the projector, generator, PA system, and outreach supplies.', 'label' => 'See equipment list', 'href' => '#equipment-list'],
-                ['title' => 'Volunteer', 'description' => 'Offer your time, STEM knowledge, or mentorship to support girls during outreach activities.', 'label' => 'Call AkuaBa', 'href' => 'tel:0207495972'],
-                ['title' => 'Partner with us', 'description' => 'Schools, organizations, and community partners can contact AkuaBa to discuss working together.', 'label' => 'Call about partnering', 'href' => 'tel:0207495972'],
+                ['title' => 'Donate', 'description' => 'Contribute any amount by Mobile Money. Confirm the payment details before sending.', 'label' => 'View payment details', 'page' => 'donate'],
+                ['title' => 'Sponsor equipment', 'description' => 'Fund a full item or contribute toward the projector, generator, PA system, and outreach supplies.', 'label' => 'See equipment list', 'page' => 'sponsor-equipment'],
+                ['title' => 'Volunteer', 'description' => 'Offer your time, STEM knowledge, or mentorship to support girls during outreach activities.', 'label' => 'Explore volunteering', 'page' => 'volunteer'],
+                ['title' => 'Partner with us', 'description' => 'Schools, organizations, and community partners can contact AkuaBa to discuss working together.', 'label' => 'Explore partnership', 'page' => 'partner'],
             ],
+        ],
+        'donate' => [
+            'title' => 'Donate to AkuaBa',
+            'eyebrow' => 'Support the outreach',
+            'lead' => 'Contribute any amount toward hands-on STEM outreach for girls.',
+            'paragraphs' => [
+                'AkuaBa is raising GHS 35,780 for outreach equipment. Please confirm the payment details with AkuaBa before sending a contribution.',
+            ],
+            'points' => [],
+            'mobile_money' => ['number' => '020 749 5972', 'name' => 'Patricia Kwakye-Boateng', 'reference' => 'AkuaBa'],
+            'outreach_contact' => ['name' => 'Patricia Kwakye-Boateng', 'phone' => '020 749 5972'],
+        ],
+        'sponsor-equipment' => [
+            'title' => 'Sponsor equipment',
+            'eyebrow' => 'Help equip the outreach',
+            'lead' => 'Sponsor a complete item or contribute toward equipment that supports practical STEM learning.',
+            'paragraphs' => [
+                'AkuaBa is raising GHS 35,780 for the outreach equipment below. Please contact us to confirm recommended specifications before purchasing equipment.',
+            ],
+            'points' => EquipmentSponsorship::EQUIPMENT_OPTIONS,
+            'outreach_contact' => ['name' => 'Patricia Kwakye-Boateng', 'phone' => '020 749 5972'],
+        ],
+        'volunteer' => [
+            'title' => 'Volunteer with AkuaBa',
+            'eyebrow' => 'Share your time and skills',
+            'lead' => 'Support girls during outreach by sharing your time, STEM knowledge, practical skills, or mentorship.',
+            'paragraphs' => [
+                'AkuaBa welcomes volunteers who want to contribute to upcoming outreach activities.',
+            ],
+            'points' => ['Share STEM knowledge and practical skills', 'Encourage girls through mentorship', 'Support hands-on outreach activities'],
+            'outreach_contact' => ['name' => 'Patricia Kwakye-Boateng', 'phone' => '020 749 5972'],
+        ],
+        'partner' => [
+            'title' => 'Partner with AkuaBa',
+            'eyebrow' => 'Work together for girls in STEM',
+            'lead' => 'AkuaBa welcomes conversations with schools, organizations, and community partners interested in supporting STEM outreach.',
+            'paragraphs' => [
+                'Schools, organizations, and community partners can get in touch with AkuaBa about working together.',
+            ],
+            'points' => ['Schools', 'Organizations', 'Community partners'],
+            'outreach_contact' => ['name' => 'Patricia Kwakye-Boateng', 'phone' => '020 749 5972'],
         ],
     ];
 
@@ -153,6 +210,9 @@ Route::middleware(EnsureAdmin::class)->prefix('admin')->name('admin.')->group(fu
     Route::get('/', [AdminMediaController::class, 'index'])->name('dashboard');
     Route::patch('/fundraising-progress', [AdminFundraisingController::class, 'update'])->name('fundraising-progress.update');
     Route::post('/outreach-broadcasts', [AdminOutreachBroadcastController::class, 'store'])->name('outreach.broadcast');
+    Route::delete('/volunteers/{volunteerRegistration}', [VolunteerRegistrationController::class, 'destroy'])->name('volunteers.destroy');
+    Route::delete('/partnership-inquiries/{partnershipInquiry}', [PartnershipInquiryController::class, 'destroy'])->name('partnership-inquiries.destroy');
+    Route::delete('/equipment-sponsorships/{equipmentSponsorship}', [EquipmentSponsorshipController::class, 'destroy'])->name('equipment-sponsorships.destroy');
     Route::post('/media', [AdminMediaController::class, 'store'])->name('media.store');
     Route::patch('/media/{mediaItem}', [AdminMediaController::class, 'update'])->name('media.update');
     Route::delete('/media/{mediaItem}', [AdminMediaController::class, 'destroy'])->name('media.destroy');

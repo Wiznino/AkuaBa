@@ -10,21 +10,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=15">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=67">
 </head>
 <body class="information-body">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header information-header">
         <a class="brand" href="{{ route('home') }}" aria-label="AkuaBa STEM Girls home"><span class="brand-icon"><img src="{{ asset('images/akuaba-logo.png') }}" alt=""></span><span class="brand-name">AkuaBa<small>STEM Girls</small></span></a>
-        <nav class="information-nav" aria-label="Main navigation">
-            <a href="{{ route('information.show', 'about') }}">About AkuaBa</a>
-            <a href="{{ route('information.show', 'founder') }}">Our founder</a>
-            <a href="{{ route('information.show', 'mission') }}">Our mission</a>
-            <a href="{{ route('information.show', 'programs') }}">What we do</a>
-            <a href="{{ route('information.show', 'impact') }}">Our impact</a>
-            <a href="{{ route('information.show', 'support') }}">Support us</a>
-            <a href="{{ route('admin.login') }}">Admin sign in</a>
-        </nav>
+        @include('partials.site-navigation')
     </header>
     <main id="main-content" class="video-page-main" tabindex="-1">
         <a class="information-back" href="{{ route('home') }}"><span aria-hidden="true">&#8592;</span> Back to home</a>
@@ -66,4 +58,3 @@
     </footer>
 </body>
 </html>
-
