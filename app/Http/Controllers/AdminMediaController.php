@@ -43,8 +43,8 @@ class AdminMediaController extends Controller
         $data = $request->validate([
             'title' => ['required', 'string', 'max:120'],
             'caption' => ['nullable', 'string', 'max:500'],
-            'file' => ['nullable', 'required_without:youtube_url', 'prohibited_with:youtube_url', 'file', 'max:1048576', 'mimes:jpg,jpeg,png,webp,gif,mp4,webm,mov,mp3,wav,ogg,pdf,doc,docx,ppt,pptx,xls,xlsx,zip'],
-            'youtube_url' => ['nullable', 'required_without:file', 'prohibited_with:file', 'string', 'max:2048', function (string $attribute, mixed $value, \Closure $fail): void {
+            'file' => ['nullable', 'required_without:youtube_url', 'prohibits:youtube_url', 'file', 'max:32768', 'mimes:jpg,jpeg,png,webp,gif,mp4,webm,mov,mp3,wav,ogg,pdf,doc,docx,ppt,pptx,xls,xlsx,zip'],
+            'youtube_url' => ['nullable', 'required_without:file', 'prohibits:file', 'string', 'max:2048', function (string $attribute, mixed $value, \Closure $fail): void {
                 if ($value !== null && $this->youtubeVideoId($value) === null) {
                     $fail('Enter a valid YouTube video URL.');
                 }

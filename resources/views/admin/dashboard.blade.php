@@ -153,7 +153,7 @@
                 <div class="field"><label for="sort_order">Display order</label><input id="sort_order" name="sort_order" type="number" min="0" max="65535" value="{{ old('sort_order', 0) }}"><span class="field-hint">Lower numbers appear first.</span>@error('sort_order')<span class="field-error">{{ $message }}</span>@enderror</div>
                 <label class="publish-toggle"><input type="checkbox" name="is_published" value="1" checked><span><strong>Publish after upload</strong><small>Show this item on the public website.</small></span></label>
             </div>
-            <div class="upload-footer"><p>Choose a file or provide a YouTube video URL. Uploaded files can be up to 1 GB.</p><button class="primary-button" type="submit">Add to AkuaBa <span aria-hidden="true">&#8594;</span></button></div>
+            <div class="upload-footer"><p>Choose a file or provide a YouTube video URL. Files can be up to 32 MB.</p><button class="primary-button" type="submit">Add to AkuaBa <span aria-hidden="true">&#8594;</span></button></div>
         </form>
     </section>
 

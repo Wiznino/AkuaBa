@@ -42,11 +42,6 @@
             ]);
         }
 
-        $carouselSlides = $carouselSlides->concat([
-            ['type' => 'image', 'url' => asset('images/work-inspire.png'), 'mime_type' => null, 'title' => 'Inspire through science', 'caption' => 'Explore. Discover. Imagine.', 'alt' => 'Ghanaian girls exploring robotics together in a classroom', 'poster' => false],
-            ['type' => 'image', 'url' => asset('images/work-experiment.png'), 'mime_type' => null, 'title' => 'Experiment and create', 'caption' => 'Learn by trying things out.', 'alt' => 'Ghanaian girls conducting a colorful chemistry experiment', 'poster' => false],
-            ['type' => 'image', 'url' => asset('images/work-design.png'), 'mime_type' => null, 'title' => 'Design and build', 'caption' => 'Turn ideas into working projects.', 'alt' => 'Ghanaian girls building and coding a small robot', 'poster' => false],
-        ]);
     @endphp
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="announcement">Our heritage. Our STEM future. <a href="#sponsor">Help equip the next generation <span aria-hidden="true">&#8599;</span></a></div>
@@ -299,7 +294,6 @@
     </script>
 </body>
 </html>
-
 
 
 
