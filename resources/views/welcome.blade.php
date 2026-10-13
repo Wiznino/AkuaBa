@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=67">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=79">
 </head>
 <body>
     @php
@@ -66,7 +66,7 @@
                             @if ($slide['type'] === 'video')
                                 <video controls playsinline preload="metadata" aria-label="{{ $slide['title'] }}"><source src="{{ $slide['url'] }}" type="{{ $slide['mime_type'] }}">Your browser does not support embedded video.</video>
                             @else
-                                <img src="{{ $slide['url'] }}" alt="{{ $slide['alt'] }}" @if ($index > 0) loading="lazy" @endif>
+                                <img src="{{ $slide['url'] }}" alt="{{ $slide['alt'] }}" decoding="async" @if ($index === 0) fetchpriority="high" @else loading="lazy" @endif>
                             @endif
                             @if ($slide['caption'])
                                 <figcaption class="slide-caption"><span>{{ $slide['title'] }}</span><strong>{{ $slide['caption'] }}</strong></figcaption>
@@ -191,6 +191,21 @@
             <p class="thank-you-footer">Your support helps make hands-on learning possible. We appreciate you.</p>
         </section>
 
+        <section class="partner-recognition section-wrap" aria-labelledby="partner-recognition-title">
+            <div class="partner-recognition-card">
+                <img src="{{ asset('uploads/akuaba-bokuruwa-school-sign.jpg') }}" alt="School sign for Bokuruwa D/A Junior High School in Kwahu" width="1170" height="863" loading="lazy" decoding="async">
+                <div class="partner-recognition-copy">
+                    <p class="eyebrow"><span class="eyebrow-line"></span> School outreach host</p>
+                    <h2 id="partner-recognition-title">With thanks to <em>Bokuruwa D/A JHS.</em></h2>
+                    <p>We are grateful to Bokuruwa D/A Junior High School, Kwahu, for welcoming AkuaBa STEM Girls Outreach and making space for girls to explore hands-on STEM.</p>
+                    <div class="partner-recognition-actions">
+                        <a class="button button-dark" href="{{ route('information.show', 'partner') }}">Explore a partnership <span aria-hidden="true">&#8599;</span></a>
+                        <a class="text-link" href="tel:0207495972">Call AkuaBa: 020 749 5972</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         @if ($resources->isNotEmpty())
             <section class="resource-section section-wrap" aria-labelledby="resources-title">
                 <div class="resource-heading"><p class="eyebrow"><span class="eyebrow-line"></span> Shared by AkuaBa</p><h2 id="resources-title">Resources for the <em>community.</em></h2></div>
@@ -294,10 +309,6 @@
     </script>
 </body>
 </html>
-
-
-
-
 
 
 

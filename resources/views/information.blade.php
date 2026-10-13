@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=68">
+    <link rel="stylesheet" href="{{ asset('css/akuaba.css') }}?v=79">
 </head>
 <body class="information-body">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -25,7 +25,7 @@
             <h1 id="information-title">{{ $page['title'] }}</h1>
             @if (isset($page['founder_image']))
                 <div class="founder-profile">
-                    <img src="{{ asset($page['founder_image']) }}" alt="{{ $page['founder_image_alt'] }}">
+                    <img src="{{ asset($page['founder_image']) }}" alt="{{ $page['founder_image_alt'] }}" width="1170" height="1419" decoding="async" fetchpriority="high">
                     <div>
                         <p class="founder-passion-label">The founder’s passion</p>
                         <p class="information-lead founder-passion-lead">{{ $page['lead'] }}</p>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             @else
-                <p class="information-lead">{{ $page['lead'] }}</p>
+                <p class="information-lead @if (in_array($pageSlug, ['about', 'mission', 'programs', 'vision', 'impact', 'support'], true)) about-page-lead @endif">{{ $page['lead'] }}</p>
             @endif
             <div class="information-copy">
                 @foreach ($page['paragraphs'] as $paragraph)

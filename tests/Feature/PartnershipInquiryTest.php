@@ -11,6 +11,18 @@ class PartnershipInquiryTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_homepage_recognizes_the_confirmed_bokuruwa_school_host_and_offers_contact_options(): void
+    {
+        $response = $this->get(route('home'));
+
+        $response->assertOk()
+            ->assertSee('Bokuruwa D/A Junior High School, Kwahu')
+            ->assertSee('School outreach host')
+            ->assertSee('src="'.asset('uploads/akuaba-bokuruwa-school-sign.jpg').'"', false)
+            ->assertSee('href="'.route('information.show', 'partner').'"', false)
+            ->assertSee('href="tel:0207495972"', false);
+    }
+
     public function test_partner_page_displays_partnership_inquiry_form(): void
     {
         $response = $this->get(route('information.show', 'partner'));
